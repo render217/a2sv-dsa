@@ -1,12 +1,5 @@
-# problem: https://www.geeksforgeeks.org/problems/check-if-two-arrays-are-equal-or-not3847/1
+# submission: https://leetcode.com/problems/contains-duplicate/submissions/1895446080
 
 class Solution:
-    def checkEqual(self, a, b) -> bool:
-        if len(a) != len(b):
-            return False
-        a.sort()
-        b.sort()
-        for i in range(len(a)):
-            if a[i] != b[i]:
-                return False
-        return True
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        return len(set(nums)) < len(nums)

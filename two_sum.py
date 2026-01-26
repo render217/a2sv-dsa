@@ -1,0 +1,11 @@
+# https://leetcode.com/problems/two-sum/submissions/1897961420
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i,num in enumerate(nums):
+            comp = target - num
+            if comp in seen:
+                return [seen[comp],i]
+            seen[num] = i
+

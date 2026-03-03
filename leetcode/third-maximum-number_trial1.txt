@@ -1,0 +1,32 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+    #    nums.sort()
+    #    seen = set()
+       
+    #    for i in range(len(nums)-1,-1,-1):
+    #         if len(seen) != 3:
+    #             if nums[i] not in seen:
+    #                 seen.add(nums[i])
+            
+    #    return  max(seen) if len(seen) != 3 else min(seen)
+
+        first_max, second_max, third_max = float("-inf"), float('-inf'), float('-inf')
+
+        for num in nums:
+            if num > first_max:
+                third_max = second_max
+                second_max = first_max
+                first_max = num
+            elif num < first_max and num > second_max:
+                third_max = second_max
+                second_max = num
+            elif num < second_max and num > third_max:
+                third_max = num
+        
+        if third_max == float('-inf') or len(nums) <= 2:
+            return max(nums)
+        
+        return third_max
+
+       
+

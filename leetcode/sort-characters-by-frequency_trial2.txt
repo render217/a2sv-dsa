@@ -1,0 +1,12 @@
+from collections import defaultdict
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        freq = defaultdict(int)
+        for ch in s:
+            freq[ch] += 1
+
+        st = list(s)
+
+        st.sort(key=lambda x: (freq[x],x),reverse=True)
+
+        return "".join(st)

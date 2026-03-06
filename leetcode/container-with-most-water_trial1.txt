@@ -1,0 +1,30 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        n = len(height)  
+        l = 0
+        r = n - 1
+        max_ = float("-inf")
+
+        while l < r:
+            width = r - l 
+            min_height = min(height[r],height[l])
+            
+            area = width * min_height
+            max_ = max(max_,area)
+            
+            if height[l] < height[r]:
+                l+=1
+            else:
+                r-=1
+
+        return max_
+
+
+        # for i in range(n):
+        #     temp_max = float("-inf")
+        #     for j in range(i+1,n):
+        #         if (j - i) * min(height[i],height[j]) > temp_max:
+        #             temp_max = (j - i) * min(height[i],height[j])
+        #     max_ = max(temp_max,max_)
+
+         # [1,8,6,2,5,4,8,3,7]

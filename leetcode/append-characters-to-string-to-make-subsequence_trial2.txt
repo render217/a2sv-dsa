@@ -1,0 +1,33 @@
+class Solution:
+    def appendCharacters(self, s: str, t: str) -> int:
+        p1 = 0
+        p2 = 0
+        idx = 0
+        
+        while p1 < len(s) and p2 < len(t):
+            if s[p1] != t[p2]:
+                p1+=1
+            else:
+                p1+=1
+                p2+=1
+        
+        if p2 != len(t):
+            return len(t) - p2
+
+        return 0
+        
+        
+
+        
+        
+#  s = [i]
+#  a = [k]
+#      p1
+#      p2
+
+   # s  # [c  o  a  c  h  i  n  g] 
+        #           p1 
+# t    #  [c  o  d  i  n  g ]
+        #        p2
+
+    

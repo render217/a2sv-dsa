@@ -1,0 +1,20 @@
+from collections import defaultdict
+class Solution:
+    def findRelativeRanks(self, score: List[int]) -> List[str]:
+        sorted_score = sorted(score,reverse=True)
+        lookup = defaultdict(int)
+        for i , s in enumerate(sorted_score):
+            lookup[s] = i
+
+        output = []
+        for val in score:
+            if lookup[val] == 0:
+                output.append("Gold Medal")
+            elif lookup[val] == 1:
+                output.append("Silver Medal")
+            elif lookup[val] == 2:
+                output.append("Bronze Medal")
+            else:
+                output.append(str(lookup[val] + 1))
+        
+        return output

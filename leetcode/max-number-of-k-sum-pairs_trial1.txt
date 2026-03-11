@@ -1,0 +1,23 @@
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        oper = 0
+        n = len(nums)
+        l = 0
+        r = n - 1
+
+        while l < r:
+            curr_sum = nums[l] + nums[r]
+            if curr_sum == k:
+                oper +=1
+                l+=1
+                r-=1
+            elif curr_sum > k:
+                r-=1
+            else:
+                l+=1
+        return oper
+
+
+
+

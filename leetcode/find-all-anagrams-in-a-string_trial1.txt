@@ -1,0 +1,24 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+      s_len,p_len = len(s), len(p)
+      
+      result = []
+      w_count = Counter(s[:p_len])
+      p_count = Counter(p)
+      
+      left = 0
+
+      if w_count == p_count:
+        result.append(left)
+
+      for right in range(p_len,s_len):
+            w_count[s[right]] += 1
+            w_count[s[left]] -= 1
+            if w_count[s[left]] == 0:
+                del w_count[s[left]]
+            left+=1
+
+            if w_count == p_count:
+                result.append(left)
+
+      return result

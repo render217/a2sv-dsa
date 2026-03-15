@@ -1,0 +1,34 @@
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        count = 0
+        odd_indices = [ i for i in range(n) if nums[i] % 2]
+
+        m = len(odd_indices)
+        
+        for i in range(m - k + 1): 
+            first = odd_indices[i]
+            last = odd_indices[i+k-1]
+
+            prev_odd = odd_indices[i-1] if i > 0 else -1
+            next_odd = odd_indices[i+k] if i + k < m else n
+
+            left_start_pos = first - prev_odd 
+            right_end_pos = next_odd - last 
+
+            count += left_start_pos * right_end_pos
+            
+        return count
+
+
+        # brute force
+        # n = len(nums)
+        # count = 0
+        # for i in range(n):
+        #     odd_count = 0
+        #     for j in range(i,n):
+        #         if nums[j] % 2 != 0:
+        #             odd_count+=1
+        #         if odd_count == k:
+        #             count+=1     
+        # return count

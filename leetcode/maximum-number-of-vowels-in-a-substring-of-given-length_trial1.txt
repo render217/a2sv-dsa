@@ -1,0 +1,25 @@
+from collections import Counter
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        def count_vowels(freq:dict[str,int])->int:
+            vowel = set("aeiou")
+            count = 0
+            for v in vowel:
+                if v in freq:
+                    count+=freq[v]
+            return count
+
+        n = len(s)
+        left, right = 0,0
+        curr_window = s[left:right+k]
+        freq = Counter(curr_window)
+        max_ = count_vowels(freq)
+        for right in range(k,n):
+            freq[s[right]] += 1
+            freq[s[left]] -= 1
+            if freq[s[left]] == 0:
+                del freq[s[left]]
+            max_ = max(max_,count_vowels(freq))
+            left+=1
+            
+        return max_

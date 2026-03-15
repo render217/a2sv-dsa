@@ -1,0 +1,18 @@
+from collections import defaultdict
+class Solution:
+    def countVowelSubstrings(self, word: str) -> int:
+        n = len(word)
+        vowels = set('aeiou')
+        count = 0
+        for i in range(n):
+            if word[i] not in vowels:
+                continue
+            subs = defaultdict(int)
+            for j in range(i,n):
+                if word[j] in vowels:
+                    subs[word[j]] += 1
+                    if len(subs) == len(vowels):
+                        count+=1
+                else:
+                    break
+        return count

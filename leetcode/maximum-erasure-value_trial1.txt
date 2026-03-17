@@ -1,0 +1,20 @@
+from collections import defaultdict
+class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        l , ans , curr_sum = 0,0,0
+        d = defaultdict(int)
+        for r in range(n):
+            while nums[r] in d: 
+                d[nums[l]] -= 1
+                if d[nums[l]] == 0:
+                    del d[nums[l]]
+                curr_sum -= nums[l]
+                l+=1
+            else:
+                d[nums[r]] += 1
+                curr_sum += nums[r]
+                ans = max(ans,curr_sum)
+        return ans
+
+

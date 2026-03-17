@@ -1,0 +1,21 @@
+from collections import deque,Counter
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+       n , m = len(s2),len(s1)
+       window_counts = Counter()
+       target_counts = Counter(s1)
+       window = deque()
+
+       for end in range(n):
+            char = s2[end]
+            window.append(char)
+            window_counts[char] += 1
+            
+            if len(window) == m:
+                if window_counts == target_counts:
+                    return True 
+                leftchar = window.popleft()
+                window_counts[leftchar] -= 1
+                if window_counts[leftchar] == 0:
+                    del window_counts[leftchar]
+       return False

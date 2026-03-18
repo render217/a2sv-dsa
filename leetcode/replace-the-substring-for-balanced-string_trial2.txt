@@ -1,0 +1,26 @@
+from collections import Counter,defaultdict
+class Solution:
+    def balancedString(self, s: str) -> int:
+       n = len(s)
+       b = n // 4
+       cnt = Counter({"W":0, "E":0 ,"Q":0,"R":0})
+       cnt.update(s)
+       bal = Counter()
+       ans = float("inf")
+       for k,v in cnt.items():
+           if v > b:
+               bal[k] = v - b
+       if bal == Counter():
+           return 0
+       l = 0
+       curr = Counter()
+       for r in range(n):
+           curr[s[r]] += 1
+           while curr >= bal and l <= r:
+               ans = min(ans, r - l + 1)
+               curr[s[l]] -= 1
+               if curr[s[l]] == 0:
+                   del curr[s[l]]
+               l+=1
+
+       return ans

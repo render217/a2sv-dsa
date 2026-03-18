@@ -1,0 +1,16 @@
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        ans = []
+        prefix = [nums[0]]
+        for i in range(1,n):
+            prefix.append(prefix[i-1] + nums[i])
+
+        for r in range(n):
+            if r - k >= 0 and r + k < n:
+                sum_ = prefix[r+k] -  (0 if r-k-1 < 0 else prefix[r-k-1])
+                len_ = k * 2 + 1
+                ans.append(sum_ // len_)
+            else:
+                ans.append(-1)
+        return ans

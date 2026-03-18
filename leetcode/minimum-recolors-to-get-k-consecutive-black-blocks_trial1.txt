@@ -1,0 +1,14 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        n = len(blocks)
+        l = 0
+        curr = Counter(blocks[:k])
+        min_oper = k - curr['B']
+        for r in range(k,n):
+            curr[blocks[r]] += 1
+            curr[blocks[l]] -= 1
+            l+=1
+            if k - curr['B'] < min_oper:
+                min_oper = k - curr['B']
+        return min_oper
+

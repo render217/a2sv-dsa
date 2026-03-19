@@ -1,0 +1,20 @@
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        s = list(s)
+        n = len(s)
+        diff = [0] * (n+1)
+
+        for st,e,d in shifts:
+            diff[st] += 1 if d == 1 else -1
+            diff[e+1] -= 1 if d == 1 else -1 
+        
+        
+        total_shift = 0
+        for i in range(n):
+            total_shift += diff[i]
+            idx = ord(s[i]) - ord('a')
+            new_idx = (idx + total_shift) % 26 
+            s[i] = chr(new_idx + ord('a'))
+
+        return "".join(s)
+

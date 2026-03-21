@@ -1,0 +1,12 @@
+class Solution:
+    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
+        diff = [0] * (n + 2)
+        for f,l,s in bookings:
+            diff[f] += s
+            diff[l+1] -= s
+        
+        curr_sum = 0
+        for i,d in enumerate(diff):
+            curr_sum+=d
+            diff[i] = curr_sum
+        return diff[1:-1] 

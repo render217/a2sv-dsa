@@ -1,0 +1,21 @@
+import math
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+
+        if c <= 1:
+            return True
+
+        l = 0
+        r = math.floor(math.sqrt(c))
+
+        while l <= r:
+           cond = r*r + l*l
+           if cond == c:
+               return True 
+           elif cond > c:
+                r-=1
+           else:
+               l+=1
+
+        return False
+

@@ -1,0 +1,19 @@
+class Solution:
+    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
+        def atMostK(nums,k):
+            n = len(nums)
+            l = 0
+            curr = defaultdict(int)
+            cnt = 0
+            for r in range(n):
+                curr[nums[r]] += 1
+            
+                while len(curr) > k:
+                    curr[nums[l]] -= 1
+                    if curr[nums[l]] == 0:
+                        del curr[nums[l]]
+                    l+=1
+                cnt += (r - l + 1)
+            return cnt
+
+        return  atMostK(nums,k) - atMostK(nums,k-1)

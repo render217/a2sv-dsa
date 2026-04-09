@@ -1,0 +1,25 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        n,m = len(nums2),len(nums1)
+
+        d = defaultdict(int)
+        for i in range(n):
+            d[nums2[i]] = i
+
+
+        stack = []
+        nxt_greator_idx = [-1] * n
+
+        for i in range(n):
+            while stack and nums2[stack[-1]] < nums2[i]:
+                idx = stack.pop()
+                nxt_greator_idx[idx] = nums2[i]
+
+            stack.append(i)
+
+        ans = [-1] * m
+        for i in range(m):
+            idx = d[nums1[i]]
+            ans[i] = nxt_greator_idx[idx]
+        return ans
+

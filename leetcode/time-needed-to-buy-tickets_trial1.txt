@@ -1,0 +1,18 @@
+from collections import deque
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        queue = deque()
+        for i,t in enumerate(tickets):
+            queue.append((t,i))
+        time = 0
+        while queue:
+            t,i = queue.popleft()
+            t -= 1
+            time +=1
+            if t == 0:
+                if i == k:
+                    break
+            else:
+                queue.append((t,i))
+        return time
+            

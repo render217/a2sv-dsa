@@ -1,0 +1,13 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:        
+        queue = deque()
+        freq = defaultdict(int)
+        for i , char in enumerate(s):
+           freq[char] += 1
+           queue.append((char,i))
+
+        while queue:
+            char,idx = queue.popleft()
+            if freq[char] == 1:
+                return idx 
+        return -1

@@ -1,0 +1,16 @@
+class Solution:
+    def predictTheWinner(self, nums: List[int]) -> bool:
+        def winner(l, r, score1, score2, is_p1_turn):
+            if l > r:
+                return score1 >= score2
+            
+            if is_p1_turn:
+                p1_wins_left = winner(l+1, r, score1+nums[l], score2, False)
+                p1_wins_right = winner(l, r-1, score1+nums[r], score2, False)
+                return p1_wins_left or p1_wins_right
+            else:
+                p1_wins_left = winner(l+1, r, score1, score2+nums[l], True)
+                p1_wins_right = winner(l, r-1, score1, score2+nums[r], True)
+                return p1_wins_left and p1_wins_right
+                
+        return winner(0, len(nums)-1, 0, 0, True)

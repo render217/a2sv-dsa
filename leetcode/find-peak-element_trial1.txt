@@ -1,0 +1,30 @@
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        n = len(nums)
+        l , h = 0, n - 1
+        while l < h:
+            m = l + (h-l) // 2
+            if nums[m] < nums[m+1]:
+                 l = m + 1
+            else:
+                h = m
+        return l
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        # n = len(nums)
+        # ans = [max(nums),nums.index(max(nums))]
+        # for i in range(n-2):
+        #     if nums[i] < nums[i+1] < nums[i+2]:
+        #          if nums[i + 1] > ans[0]:
+        #             ans = [nums[i + 1], i + 1]
+        #             break
+        # return ans[1]

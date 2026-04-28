@@ -1,0 +1,21 @@
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        nums.sort()
+
+        def search_sp(nums,mid):
+            t = 0
+            for n in nums:
+                t += math.ceil(n/mid)
+            return t
+
+        l = 1
+        h = max(nums)
+
+        while l <= h:
+            mid = l + (h - l) // 2
+            if search_sp(nums,mid) <= threshold:
+                h = mid - 1
+            else:
+                l = mid + 1
+
+        return l
